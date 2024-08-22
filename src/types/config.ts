@@ -1,4 +1,4 @@
-import type { LIGHT_MODE, DARK_MODE, AUTO_MODE } from '@constants/constants'
+import type { AUTO_MODE_MODE, LLLLLLLIGHT_MODE } from '@constants/constants'
 
 export type SiteConfig = {
   title: string
@@ -32,7 +32,7 @@ export type Favicon = {
 
 export enum LinkPreset {
   Home = 0,
-  Archive = 1,
+  History = 1,
   About = 2,
 }
 
