@@ -1,8 +1,9 @@
 ---
-import ImageWrapper from '../misc/ImageWrapper.astro'
+import { onClickEmail } from '@utils/content-utils'
 import { Icon } from 'astro-icon/components'
 import { profileConfig } from '../../config'
 import { url } from '../../utils/url-utils'
+import ImageWrapper from '../misc/ImageWrapper.astro'
 
 const config = profileConfig
 ---
@@ -28,12 +29,34 @@ const config = profileConfig
                         <Icon name={item.icon} class="text-[1.5rem]"></Icon>
                     </a>
             )}
-            {config.links.length == 1 && <a rel="me" aria-label={config.links[0].name} href={config.links[0].url} target="_blank"
-                                            class="btn-regular rounded-lg h-10 gap-2 px-3 font-bold active:scale-95">
-                <Icon name={config.links[0].icon} class="text-[1.5rem]"></Icon>
+            {config.links.length == 1 && 
+                <button id="email-copy-btn" data-email={config.links[0].url} aria-label="이메일 주소 복사 버튼" class="btn-regular rounded-lg h-10 gap-2 px-3 font-bold active:scale-95 cursor-pointer">
+                    <Icon name={config.links[0].icon} class="text-[1.5rem]"></Icon>
                 {config.links[0].name}
-            </a>}
+            </button>}
         </div>
     </div>
 </div>
 
+<script>
+    const emailCopyBtn = document.getElementById('email-copy-btn');
+
+    if (emailCopyBtn) {
+        const email = emailCopyBtn.getAttribute('data-email');
+
+        emailCopyBtn.addEventListener('click', () => {
+            if (email) {
+                navigator.clipboard.writeText(email)
+                    .then(() => {
+                        alert('이메일 주소가 복사되었습니다');
+                    })
+                    .catch(err => {
+                        console.error('이메일 주소 클립보드 복사 실패:', err);
+                        alert('이메일 주소 복사에 실패했습니다. 직접 복사해주세요: ' + email);
+                    });
+            } else {
+                alert('이메일 주소를 찾을 수 없습니다.');
+            }
+        });
+    }
+</script>
