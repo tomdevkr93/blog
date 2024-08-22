@@ -49,9 +49,7 @@ if (title) {
   pageTitle = `${siteConfig.title} - ${siteConfig.subtitle}`
 }
 
-const favicons: Favicon[] =
-  siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons
-
+const favicons: Favicon[] = defaultFavicons
 const siteLang = siteConfig.lang.replace('_', '-')
 ---
 
@@ -81,7 +79,6 @@ const siteLang = siteConfig.lang.replace('_', '-')
 			<link rel="icon"
 				  href={favicon.src.startsWith('/') ? url(favicon.src) : favicon.src}
 				  sizes={favicon.sizes}
-				  media={favicon.theme && `(prefers-color-scheme: ${favicon.theme})`}
 			/>
 		))}
 		<!-- Set the theme before the page is rendered to avoid a flash -->
