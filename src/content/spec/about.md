@@ -20,7 +20,7 @@
 
   > <ul class="experience-overview">
   >   <li><h2 class="freelancer">프리랜서 <span>진행중</span></h2></li>
-  >   <li>씨유박스 <span>2022.04 ~ 2022.08</span></li>
+  >   <li>씨유박스 <span>2024.04 ~ </span></li>
   >   <li>아카에이아이 <span>2022.01 ~ 2023.12</span></li>
   >   <li>HYBE IM <span>2019.12 ~ 2021.09 </span></li>
   >   <li>씨알에스큐브 <span>2018.04 ~ 2019.07</span></li>
