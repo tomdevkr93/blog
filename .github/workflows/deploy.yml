@@ -1,12 +1,14 @@
 name: Deploy to GitHub Pages
 
 on:
-  # 'main' 브랜치로 푸시할 때마다 워크플로를 트리거합니다.
-  # 다른 브랜치 이름을 사용하시나요? `main`을 브랜치 이름으로 바꾸세요.
-  push:
-    branches: [ main ]
-  # GitHub의 Actions 탭에서 이 워크플로를 수동으로 실행할 수 있습니다.
-  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: 
+      - deploy
+    push:
+      branches:
+        - deploy
+    workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
