@@ -1,11 +1,11 @@
 ---
 import path from 'path'
+import { Icon } from 'astro-icon/components'
+import I18nKey from '../i18n/i18nKey'
+import { i18n } from '../i18n/translation'
+import { getDir } from '../utils/url-utils'
 import PostMetadata from './PostMeta.astro'
 import ImageWrapper from './misc/ImageWrapper.astro'
-import { Icon } from 'astro-icon/components'
-import { i18n } from '../i18n/translation'
-import I18nKey from '../i18n/i18nKey'
-import { getDir } from '../utils/url-utils'
 
 interface Props {
   class?: string
@@ -88,7 +88,7 @@ const { remarkPluginFrontmatter } = await entry.render()
 
     {!hasCover &&
         <a href={url} aria-label={title} class="hidden md:flex btn-regular w-[3.25rem]
-         absolute right-3 top-3 bottom-3 rounded-xl bg-[var(--enter-btn-bg)]
+         absolute right-3 top-3 bottom-3 rounded-xl bg-transparent
          hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95
         ">
             <Icon name="material-symbols:chevron-right-rounded"
