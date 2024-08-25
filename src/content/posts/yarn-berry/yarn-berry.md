@@ -5,7 +5,7 @@ description: '패키지 매니징 과정에서 겪는 많은 문제를 해결해
 image: 'cover.png'
 tags: [front-end, npm, yarn, yarn-berry, pnpm]
 category: 'front-end'
-draft: true 
+draft: false 
 ---
 
 최근 iOS 개발에 몰두해있다가 오랜만에 웹 프론트엔드로 복귀(?) 하니 많은 것들이 바뀐 것 같습니다  
@@ -94,41 +94,43 @@ yarn set version berry
 프로젝트에서 버전을 확인해보니 stable 버전으로 변경 되었습니다.
 ![alt text](image-1.png)
 
-Yarn Berry 초기화전 글로벌로 설치된 yarn은 classic 버전이였구요
+Yarn Berry 초기화 전 글로벌로 설치된 yarn은 classic 버전이었구요
 ![alt text](image.png)
 
+:::warning  
 그런데 Corepack이 활성화 되어있지 않으면 아래 경고가 뜹니다
 ![alt text](image-2.png)
 
 Corepack은 Node.js 버전 16.10 이상에서 제공되는 기능으로, 여러 패키지 매니저 버전을 프로젝트 마다 쉽게 관리할 수 있게 해줍니다. 선택사항이나 Corepack도 세팅하도록 하겠습니다.
 
-> 1. Node.js 버전 확인  
->   먼저 Node.js 버전이 16.10 이상인지 확인합니다.
-> ```bash
->  node --version
->  ```
-> 2. Corepack 활성화  
->   Node.js 16.10 이상을 사용 중이라면, 다음 명령어로 Corepack을 활성화할 수 있습니다
-> ```bash
->  corepack enable
->  ```
-> 
-> 3. Yarn 버전 설정  
->   Corepack을 활성화한 후, 다시 Yarn 버전을 설정합니다
-> ```bash
-> yarn set version berry
-> ```
+1. Node.js 버전 확인  
+  먼저 Node.js 버전이 16.10 이상인지 확인합니다.
+```bash
+ node --version
+ ```
+2. Corepack 활성화  
+  Node.js 16.10 이상을 사용 중이라면, 다음 명령어로 Corepack을 활성화할 수 있습니다
+```bash
+ corepack enable
+ ```
+
+3. Yarn 버전 설정  
+  Corepack을 활성화한 후, 다시 Yarn 버전을 설정합니다
+```bash
+yarn set version berry
+```
 >
-> 4. 버전 확인  
->   설정이 제대로 되었는지 확인하기 위해 Yarn 버전을 확인합니다  
-> ```bash
-> yarn --v
-> ```
-> 프로젝트 내에서 yarn 버전과 프로젝트 외에서 버전이 다르네요. 잘 적용된 것 같습니다.
-> 프로젝트 내에서 사용되는 yarn 버전은 `.yarnrc.yml` 파일에서 확인할 수 있습니다.
-> ```yml
-> yarnPath: .yarn/releases/yarn-4.4.1.cjs
-> ```
+4. 버전 확인  
+  설정이 제대로 되었는지 확인하기 위해 Yarn 버전을 확인합니다  
+```bash
+yarn --v
+```
+프로젝트 내에서 yarn 버전과 프로젝트 외에서 버전이 다르네요. 잘 적용된 것 같습니다.
+프로젝트 내에서 사용되는 yarn 버전은 `.yarnrc.yml` 파일에서 확인할 수 있습니다.
+```yml
+yarnPath: .yarn/releases/yarn-4.4.1.cjs
+```
+:::
    
 4. 이어서 npm의 유산 node_modules 디렉토리와 package-lock.json 파일을 삭제합니다
 ```bash
@@ -159,3 +161,22 @@ yarn
 ```bash
 yarn dev
 ```
+
+잘 실행되는군요!
+
+:::CAUTION  
+그런데.. 소스코드를 살펴보니
+
+![alt text](image-3.png)
+
+`'JSX.IntrinsicElements' 인터페이스가 없으므로 JSX 요소는 암시적으로 'any' 형식입니다.ts(7026)`  
+에러 뿜뿜
+
+yarn berry로 전환하면서 TypeScript 호환 이슈입니다.  
+아래 명령어로 TypeScript SDK를 설정하여 해결합니다.
+```bash
+yarn add -D typescript
+yarn dlx @yarnpkg/sdks vscode
+```
+:::
+
