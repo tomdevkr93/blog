@@ -140,14 +140,26 @@ rm package-lock.json
 
 5. `.gitignore` 파일에 다음 내용을 추가합니다  
 
+not using zero install
 ```
+.pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-.pnp.*
+```
+
+using zero install
+```
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 ```
 
 6. 의존성을 다시 설치합니다
