@@ -184,11 +184,13 @@ yarn dev
 `'JSX.IntrinsicElements' 인터페이스가 없으므로 JSX 요소는 암시적으로 'any' 형식입니다.ts(7026)`  
 에러 뿜뿜
 
-yarn berry로 전환하면서 TypeScript 호환 이슈입니다.  
-아래 명령어로 TypeScript SDK를 설정하여 해결합니다.
+npm은 패키지가 node_module에 압축 되어있지 않은 코드상태로 관리되어 바로 참조할 수 있지만   
+yarn berry는 zip으로 아카이브되어 코드 참조에 문제가 생깁니다.  
+그래서 vscode Extension에 ZipFS를 설치해야 합니다.
+
+![alt text](image-4.png)
+
+그리고 sdk까지 같이 설치합니다.
 ```bash
-yarn add -D typescript
 yarn dlx @yarnpkg/sdks vscode
 ```
-:::
-
